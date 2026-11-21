@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agregar producto</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .panel { background:#fff; border-radius:14px; padding:22px; margin:30px auto; max-width:640px; box-shadow:0 2px 10px rgba(0,0,0,.06); }
+    .panel h1 { font-size:1.4rem; margin-bottom:6px; }
+    .panel p.ayuda { color:var(--color-suave); font-size:.92rem; margin-bottom:16px; }
+    label { display:block; font-weight:600; margin:14px 0 4px; font-size:.92rem; }
+    input, textarea { width:100%; padding:11px 12px; border:1px solid #d8ddd9; border-radius:10px; font:inherit; }
+    textarea { min-height:90px; resize:vertical; }
+    pre { background:#14201a; color:#d7f5e3; padding:14px; border-radius:10px; overflow:auto; font-size:.85rem; margin-top:14px; white-space:pre-wrap; }
+    .pasos { margin-top:18px; font-size:.92rem; color:var(--color-suave); padding-left:18px; }
+    .pasos li { margin-bottom:6px; }
+    .btn-verde { background:var(--color-principal); color:#fff; margin-top:14px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="panel">
+      <h1>Agregar un producto</h1>
+      <p class="ayuda">Llena los datos y copia el código que aparece abajo. Esta página es solo una ayuda: no guarda nada en internet.</p>
+
+      <label for="nombre">Nombre</label>
+      <input id="nombre" placeholder="Ej: Llavero de resina">
+
+      <label for="precio">Precio (solo números)</label>
+      <input id="precio" type="number" min="0" placeholder="25000">
+
+      <label for="categoria">Categoría</label>
+      <input id="categoria" placeholder="Ej: Accesorios">
+
+      <label for="descripcion">Descripción</label>
+      <textarea id="descripcion" placeholder="Material, tamaño, colores..."></textarea>
+
+      <label for="foto">Foto (elígela para tomar el nombre del archivo)</label>
+      <input id="foto" type="file" accept="image/*">
+
+      <label><input id="agotado" type="checkbox" style="width:auto"> Marcar como agotado</label>
+
+      <pre id="salida">Llena el formulario...</pre>
+      <button class="btn btn-verde" id="copiar" type="button">Copiar código</button>
+
+      <ol class="pasos">
+        <li>Copia la foto del producto dentro de la carpeta <b>images</b> (con ese mismo nombre).</li>
+        <li>Abre <b>js/productos.js</b> con el Bloc de notas.</li>
+        <li>Pega el código arriba de la línea que dice <i>"pega nuevos productos arriba"</i> y guarda.</li>
+        <li>Sube de nuevo la carpeta a tu hosting.</li>
+      </ol>
+    </div>
+  </div>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+    const esc = (s) => s.replace(/\\/g, "\\\\").replace(/"/g, '\\"').replace(/\n/g, " ");
+
+    function generar() {
+      const archivo = $("foto").files[0] ? $("foto").files[0].name : "nombre-de-la-foto.jpg";
+      $("salida").textContent =
+`  {
+    nombre: "${esc($("nombre").value)}",
+    precio: ${Number($("precio").value) || 0},
+    categoria: "${esc($("categoria").value)}",
+    descripcion: "${esc($("descripcion").value)}",
+    imagen: "${esc(archivo)}",
+    agotado: ${$("agotado").checked}
+  },`;
+    }
+    ["nombre","precio","categoria","descripcion","foto","agotado"].forEach((id) => {
+      $(id).addEventListener("input", generar);
+      $(id).addEventListener("change", generar);
+    });
+    $("copiar").onclick = () => {
+      navigator.clipboard.writeText($("salida").textContent);
+      $("copiar").textContent = "¡Copiado!";
+      setTimeout(() => ($("copiar").textContent = "Copiar código"), 1500);
+    };
+    generar();
+  </script>
+</body>
+</html>

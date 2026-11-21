@@ -1,0 +1,32 @@
+CATÁLOGO CON BOTÓN DE WHATSAPP
+===============================
+
+Qué incluye
+- index.html ............ la página del catálogo
+- css/styles.css ........ colores y diseño (cambia --color-principal para tu marca)
+- js/config.js .......... nombre del negocio y TU NÚMERO DE WHATSAPP
+- js/productos.js ....... la lista de productos
+- images/ ............... fotos de tus productos
+- agregar-producto.html . ayuda para generar el código de un producto nuevo
+
+1) CONFIGURAR
+Abre js/config.js y cambia el nombre, el eslogan y el número de WhatsApp
+(con código de país, sin + ni espacios. Colombia: 573001234567).
+
+2) AGREGAR PRODUCTOS
+- Pon la foto en la carpeta images/  (mejor si es cuadrada y pesa menos de 300 KB)
+- Abre agregar-producto.html en tu navegador, llena los datos y copia el código
+- Pégalo en js/productos.js, guarda.
+Para quitar un producto, borra su bloque { ... }.
+Para marcarlo agotado: agotado: true
+
+3) PUBLICAR GRATIS (elige uno)
+- Netlify Drop:  entra a app.netlify.com/drop y arrastra la carpeta completa.
+- Cloudflare Pages o GitHub Pages: también gratis.
+- Hosting propio (cPanel): sube todo a public_html.
+Cada vez que cambies productos, vuelve a subir la carpeta.
+
+4) PROMOCIONARLO
+- Pon el link en la biografía de Instagram/TikTok/Facebook y en el estado de WhatsApp.
+- Cuando un cliente toca "Pedir por WhatsApp", te llega el mensaje con el producto y el precio.
+- Opcional: compra un dominio (.com / .co) y conéctalo a Netlify o Cloudflare.
