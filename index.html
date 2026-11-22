@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Name | Colchones, Camas y Escaparates</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="catalogo">
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a href="#inicio" class="brand">
+        <span class="brand__mark" aria-hidden="true">N</span>
+        <div>
+          <span class="brand__title">Name</span>
+          <span class="brand__sub">Colchones · Camas · Escaparates</span>
+        </div>
+      </a>
+
+      <nav class="nav" aria-label="Navegación principal">
+        <a href="#catalogo">Catálogo</a>
+        <a href="#beneficios">Beneficios</a>
+        <a href="#contacto" class="nav__pill">Cotizar ahora</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="inicio" class="hero">
+      <div class="container hero__grid">
+        <div class="hero__content">
+          <span class="eyebrow">Confort, diseño y durabilidad para tu habitación</span>
+          <h1>Renueva tu habitación con descanso de verdad</h1>
+          <p class="hero__lead">
+            Encuentra <strong>colchones ortopédicos y semiortopédicos</strong>, <strong>camas modernas</strong> y <strong>escaparates amplios</strong> listos para estrenar. Elige tu referencia favorita y pídela directo por WhatsApp en segundos.
+          </p>
+          <div class="hero__actions">
+            <a href="#catalogo" class="btn btn--primary">Ver colchones, camas y escaparates</a>
+            <a href="#beneficios" class="btn btn--ghost">¿Por qué elegirnos?</a>
+          </div>
+          <div class="hero__trust">
+            <span>✓ Garantía real de fábrica</span>
+            <span>✓ Materiales de alta resistencia</span>
+            <span>✓ Atención inmediata</span>
+          </div>
+        </div>
+
+        <aside class="hero__panel" aria-label="Resumen de tienda">
+          <div class="hero__panel-head">
+            <span class="badge-blue">Colección 2026</span>
+            <h3>Catálogo actualizado</h3>
+            <p>Consulta precios, medidas y disponibilidad en tiempo real.</p>
+          </div>
+          <div class="hero__stats">
+            <div class="stat-card">
+              <span class="stat-card__label">Referencias</span>
+              <strong id="total-productos" class="stat-card__value">0</strong>
+            </div>
+            <div class="stat-card">
+              <span class="stat-card__label">Disponibles</span>
+              <strong id="total-stock" class="stat-card__value">0</strong>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="catalogo" class="section">
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <span class="eyebrow">Colección destacada</span>
+            <h2>Elige el ideal para tu habitación</h2>
+          </div>
+
+          <div class="controls">
+            <div class="pills" role="group" aria-label="Filtrar por categoría">
+              <button type="button" class="pill active" data-cat="TODAS">Todo</button>
+              <button type="button" class="pill" data-cat="Colchones">Colchones</button>
+              <button type="button" class="pill" data-cat="Camas">Camas</button>
+              <button type="button" class="pill" data-cat="Escaparates">Escaparates</button>
+            </div>
+            <input
+              type="search"
+              id="buscar-producto"
+              class="input input--compact"
+              placeholder="Buscar (ej. Doble, Queen, Ortopédico)..."
+              aria-label="Buscar producto"
+            />
+          </div>
+        </div>
+
+        <div id="catalogo-grid" class="grid"></div>
+      </div>
+    </section>
+
+    <section id="beneficios" class="section section--soft">
+      <div class="container benefits-grid">
+        <article class="benefit-card">
+          <span class="benefit-card__num">01</span>
+          <h3>Descanso garantizado</h3>
+          <p>Colchones firmes, acolchados y frescos diseñados para cuidar tu espalda desde la primera noche.</p>
+        </article>
+        <article class="benefit-card">
+          <span class="benefit-card__num">02</span>
+          <h3>Acabados que duran</h3>
+          <p>Camas resistentes y escaparates espaciosos con herrajes firmes y distribución inteligente.</p>
+        </article>
+        <article class="benefit-card">
+          <span class="benefit-card__num">03</span>
+          <h3>Compra sin vueltas</h3>
+          <p>Tocas el botón de WhatsApp en el producto que te gustó y te atendemos de inmediato.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contacto" class="section">
+      <div class="container cta-box">
+        <div>
+          <span class="eyebrow">Asesoría personalizada</span>
+          <h2>¿Quieres armar el combo de cama + colchón o escaparate?</h2>
+          <p class="cta-box__text">
+            Escríbenos y te ayudamos a elegir la medida exacta (Sencillo, Semidoble, Doble o Queen) al mejor precio.
+          </p>
+        </div>
+        <a id="btn-whatsapp-general" href="#catalogo" target="_blank" rel="noopener" class="btn btn--whatsapp">
+          Chatear por WhatsApp
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p><strong>Name</strong> · Colchones, Camas y Escaparates</p>
+      <span id="estado-sync" class="footer__status">Catálogo activo</span>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/productos.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

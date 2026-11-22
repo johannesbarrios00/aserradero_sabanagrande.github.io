@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel Provisional de Carga | Name</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="admin">
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a href="index.html" class="brand">
+        <span class="brand__mark" aria-hidden="true">N</span>
+        <div>
+          <span class="brand__title">Name</span>
+          <span class="brand__sub">Panel provisional de carga</span>
+        </div>
+      </a>
+
+      <nav class="nav" aria-label="Navegación provisional">
+        <a href="index.html" class="nav__pill">Ver tienda pública</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section section--soft">
+      <div class="container">
+        <div class="admin-banner">
+          <div>
+            <span class="eyebrow">Uso temporal · Sin escribir código</span>
+            <h1>Carga provisional de productos</h1>
+            <p>
+              1. Agrega tus <strong>Colchones, Camas y Escaparates</strong> y revisa la vista previa abajo.<br />
+              2. Haz clic en <strong>Descargar JSON</strong> y sube ese <code>productos.json</code> a GitHub.<br />
+              3. Cuando ya quede guardado en el repositorio, borra <code>agregar-producto.html</code> y la tienda queda lista.
+            </p>
+          </div>
+          <div class="admin-banner__stats">
+            <div class="stat-pill">
+              <span>Cargados</span>
+              <strong id="total-productos">0</strong>
+            </div>
+            <div class="stat-pill">
+              <span>Unidades</span>
+              <strong id="total-stock">0</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="upload-layout">
+          <div class="upload-card">
+            <div class="upload-card__header">
+              <span class="eyebrow">Nuevo producto</span>
+              <h2>Subir colchón, cama o escaparate</h2>
+              <p>Completa los datos comerciales para que el cliente vea todo claro y quiera comprar.</p>
+            </div>
+
+            <form id="form-subir-producto" class="form">
+              <div class="form__row">
+                <div class="field">
+                  <label for="nombre">Nombre del producto *</label>
+                  <input type="text" id="nombre" name="nombre" class="input" placeholder="Ej. Colchón Ortopédico Pillow Top" required />
+                </div>
+
+                <div class="field">
+                  <label for="categoria">Categoría *</label>
+                  <select id="categoria" name="categoria" class="input" required>
+                    <option value="Colchones">Colchones</option>
+                    <option value="Camas">Camas</option>
+                    <option value="Escaparates">Escaparates</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form__row form__row--three">
+                <div class="field">
+                  <label for="medidas">Medida / Tamaño *</label>
+                  <input type="text" id="medidas" name="medidas" class="input" placeholder="Ej. Doble 1.40 x 1.90 m" required />
+                </div>
+
+                <div class="field">
+                  <label for="precio">Precio oferta (COP) *</label>
+                  <input type="number" id="precio" name="precio" class="input" min="0" step="1000" placeholder="680000" required />
+                </div>
+
+                <div class="field">
+                  <label for="precio_antes">Precio anterior (opcional)</label>
+                  <input type="number" id="precio_antes" name="precio_antes" class="input" min="0" step="1000" placeholder="820000" />
+                </div>
+              </div>
+
+              <div class="form__row">
+                <div class="field">
+                  <label for="etiqueta">Etiqueta destacada (opcional)</label>
+                  <input type="text" id="etiqueta" name="etiqueta" class="input" placeholder="Ej. Más vendido, Garantía 5 años, Nuevo" />
+                </div>
+
+                <div class="field">
+                  <label for="stock">Disponibles (stock) *</label>
+                  <input type="number" id="stock" name="stock" class="input" min="0" step="1" placeholder="8" required />
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="imagen_archivo">Foto desde tu dispositivo (opcional)</label>
+                <input type="file" id="imagen_archivo" accept="image/*" class="input input--file" />
+              </div>
+
+              <div class="field">
+                <label for="imagen_url">O ruta en el repo / URL externa (opcional)</label>
+                <input type="text" id="imagen_url" name="imagen_url" class="input" placeholder="images/colchon-doble.jpg o https://..." />
+              </div>
+
+              <div class="field">
+                <label for="descripcion">Beneficios clave para convencer al cliente</label>
+                <textarea id="descripcion" name="descripcion" rows="2" class="input" placeholder="Ej. Tela antialérgica, resortes de alta resistencia, soporte lumbar firme..."></textarea>
+              </div>
+
+              <div class="form__actions">
+                <button type="submit" class="btn btn--primary">+ Agregar al catálogo</button>
+                <button type="reset" class="btn btn--ghost">Limpiar campos</button>
+              </div>
+            </form>
+          </div>
+
+          <aside class="json-card">
+            <div class="json-card__top">
+              <div>
+                <span class="eyebrow">Paso final</span>
+                <h3>Archivo <code>productos.json</code></h3>
+              </div>
+              <div class="json-card__btns">
+                <button type="button" id="btn-copiar-json" class="btn btn--small btn--ghost">Copiar</button>
+                <button type="button" id="btn-descargar-json" class="btn btn--small btn--primary">Descargar JSON</button>
+              </div>
+            </div>
+
+            <p class="json-card__help">
+              Descarga este archivo y súbelo a la raíz de tu repo en GitHub reemplazando <code>productos.json</code>. Luego borra esta página.
+            </p>
+
+            <pre id="json-preview" class="json-preview"><code>[]</code></pre>
+
+            <button type="button" id="btn-restablecer-json" class="btn btn--danger-outline btn--full">
+              Vaciar borrador / leer productos.json
+            </button>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <span class="eyebrow">Vista previa de tienda</span>
+            <h2>Así lo verá tu cliente</h2>
+          </div>
+
+          <div class="controls">
+            <div class="pills" role="group" aria-label="Filtrar vista previa">
+              <button type="button" class="pill active" data-cat="TODAS">Todo</button>
+              <button type="button" class="pill" data-cat="Colchones">Colchones</button>
+              <button type="button" class="pill" data-cat="Camas">Camas</button>
+              <button type="button" class="pill" data-cat="Escaparates">Escaparates</button>
+            </div>
+            <input
+              type="search"
+              id="buscar-producto"
+              class="input input--compact"
+              placeholder="Buscar en vista previa..."
+              aria-label="Buscar en vista previa"
+            />
+          </div>
+        </div>
+
+        <div id="catalogo-grid" class="grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p><strong>Panel provisional</strong> · Name</p>
+      <span id="estado-sync" class="footer__status">Listo</span>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/productos.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
